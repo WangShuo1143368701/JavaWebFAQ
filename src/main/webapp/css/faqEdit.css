@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+ body { 
+        padding-top: 50px;
+        padding-bottom: 50px;
+        /* width:960px; margin:0 auto;
+        background:#BDCAD2; */ 
+       }   
+          
+ .col-center-block {
+       float: none;
+       display: block;
+       margin-left: auto;
+       margin-right: auto;     
+      }  
+   .text-center{
+      text-align: center;
+    } 
+    .form-width-setting{
+    width:80%;
+    }
+    
+    #test-editormd{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
+    
+     #top-from{
+    margin-top: 50px;
+    margin-bottom: 70px;
+    }
+       #btn-submit{
+    margin-bottom: 30px;
+    width:20%;
+    }
+    

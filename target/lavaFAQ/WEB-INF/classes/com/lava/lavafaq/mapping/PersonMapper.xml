@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lava.lavafaq.dao.PersonMapper" >
+  <resultMap id="BaseResultMap" type="com.lava.lavafaq.bean.Person" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="actiCode" property="actiCode" jdbcType="VARCHAR" />
+    <result column="token_exptime" property="token_exptime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, mail,state,actiCode,token_exptime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from person
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lava.lavafaq.bean.Person" >
+    insert into person (id, username, password, 
+      mail,state,actiCode,token_exptime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mail,jdbcType=VARCHAR},#{state,jdbcType=INTEGER}, #{actiCode,jdbcType=VARCHAR}, #{token_exptime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lava.lavafaq.bean.Person" >
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lava.lavafaq.bean.Person" >
+    update person
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lava.lavafaq.bean.Person" >
+    update person
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- ws -->
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByMail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where mail = #{mail,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByCodeAndEmail" resultMap="BaseResultMap" parameterType="com.lava.lavafaq.bean.Person" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where actiCode = #{actiCode,jdbcType=VARCHAR} and mail = #{mail,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateStateByCode" parameterType="com.lava.lavafaq.bean.Person" >
+    update person
+    set state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPwdAndEmail" resultMap="BaseResultMap" parameterType="com.lava.lavafaq.bean.Person" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where password = #{password,jdbcType=VARCHAR} and mail = #{mail,jdbcType=VARCHAR}
+  </select>
+</mapper>

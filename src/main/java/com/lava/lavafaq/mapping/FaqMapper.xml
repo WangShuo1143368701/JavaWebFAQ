@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lava.lavafaq.dao.FaqMapper" >
+  <resultMap id="BaseResultMap" type="com.lava.lavafaq.bean.Faq" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="category1" property="category1" jdbcType="VARCHAR" />
+    <result column="category2" property="category2" jdbcType="VARCHAR" />
+    <result column="bugid" property="bugid" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="phenomenon" property="phenomenon" jdbcType="VARCHAR" />
+    <result column="editormd" property="editormd" jdbcType="LONGVARCHAR" />
+    <result column="editorhtml" property="editorhtml" jdbcType="LONGVARCHAR" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, mail, category1, category2, bugid, platform, phenomenon, editormd, 
+    editorhtml, datetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from faq
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from faq
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lava.lavafaq.bean.Faq" >
+    insert into faq (id, username, mail, 
+      category1, category2, bugid, 
+      platform, phenomenon, editormd, 
+      editorhtml, datetime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
+      #{category1,jdbcType=VARCHAR}, #{category2,jdbcType=VARCHAR}, #{bugid,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=VARCHAR}, #{phenomenon,jdbcType=VARCHAR}, #{editormd,jdbcType=LONGVARCHAR}, 
+      #{editorhtml,jdbcType=LONGVARCHAR}, #{datetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lava.lavafaq.bean.Faq" >
+    insert into faq
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="category1 != null" >
+        category1,
+      </if>
+      <if test="category2 != null" >
+        category2,
+      </if>
+      <if test="bugid != null" >
+        bugid,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="phenomenon != null" >
+        phenomenon,
+      </if>
+      <if test="editormd != null" >
+        editormd,
+      </if>
+      <if test="editorhtml != null" >
+        editorhtml,
+      </if>
+      <if test="datetime != null" >
+        datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="category1 != null" >
+        #{category1,jdbcType=VARCHAR},
+      </if>
+      <if test="category2 != null" >
+        #{category2,jdbcType=VARCHAR},
+      </if>
+      <if test="bugid != null" >
+        #{bugid,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="phenomenon != null" >
+        #{phenomenon,jdbcType=VARCHAR},
+      </if>
+      <if test="editormd != null" >
+        #{editormd,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="editorhtml != null" >
+        #{editorhtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lava.lavafaq.bean.Faq" >
+    update faq
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="category1 != null" >
+        category1 = #{category1,jdbcType=VARCHAR},
+      </if>
+      <if test="category2 != null" >
+        category2 = #{category2,jdbcType=VARCHAR},
+      </if>
+      <if test="bugid != null" >
+        bugid = #{bugid,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="phenomenon != null" >
+        phenomenon = #{phenomenon,jdbcType=VARCHAR},
+      </if>
+      <if test="editormd != null" >
+        editormd = #{editormd,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="editorhtml != null" >
+        editorhtml = #{editorhtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="datetime != null" >
+        datetime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lava.lavafaq.bean.Faq" >
+    update faq
+    set username = #{username,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      category1 = #{category1,jdbcType=VARCHAR},
+      category2 = #{category2,jdbcType=VARCHAR},
+      bugid = #{bugid,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      phenomenon = #{phenomenon,jdbcType=VARCHAR},
+      editormd = #{editormd,jdbcType=LONGVARCHAR},
+      editorhtml = #{editorhtml,jdbcType=LONGVARCHAR},
+      datetime = #{datetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!--  ws-->
+   <select id="selectByPhenomenon" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from faq
+    where phenomenon = #{phenomenon,jdbcType=VARCHAR}
+  </select>
+</mapper>
